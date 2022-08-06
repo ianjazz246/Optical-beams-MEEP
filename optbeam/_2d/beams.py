@@ -1,6 +1,7 @@
 
 import math
 import sys
+from scipy.special import jv as _jn
 
 try:
     import cython
@@ -88,6 +89,23 @@ class Gauss2d(Beam2dCartesian):
     def _f_Gauss(self, k_y, W_y):
         """Gaussian spectrum amplitude."""
         return _exp(-(k_y*W_y/2)**2)
+
+class Bessel2d(Beam2dCartesian):
+    """2d Bessel beam"""
+
+    def __init__(self, x, params, called=False):
+        self._k = params['k']
+        self._W_y = params['W_y']
+        self._n = params['n'] # order of Bessel
+        self._theta = params['theta'] # axicon angle
+        self._k_t = self._k * math.cos(math.radians(self._theta))
+        self._k_l = self._k * math.sin(math.radians(self._theta))
+        super().__init__(x, params, called)
+    
+    def profile(self, r):
+        return _jn(self._n, self._k_t * r.x) * _cexp(1j * self._k_l * r.y)
+    def spectrum(self, k_y):
+        return 1.0
 
 
 class IncAiry2d(Beam2dCartesian):

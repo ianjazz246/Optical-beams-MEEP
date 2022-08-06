@@ -5,7 +5,7 @@ from math import (degrees as _degrees,
                   asin as _asin,
                   atan as _atan)
 
-from ._2d.beams import Gauss2d, IncAiry2d
+from ._2d.beams import Gauss2d, IncAiry2d, Bessel2d
 from ._3d.beams import LaguerreGauss3d
 
 
