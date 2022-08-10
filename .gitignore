@@ -123,3 +123,6 @@ dmypy.json
 
 # Virtual environment created via python -m venv optbeam-env
 optbeam-env
+
+# vscode
+.vscode/
