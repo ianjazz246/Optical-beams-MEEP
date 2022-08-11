@@ -26,5 +26,5 @@ def run_sim(amp: float, logk: float):
 
 if __name__ == "__main__":
     with multiprocessing.Pool(processes=PROCESS_COUNT) as pool:    
-        pool.starmap(run_sim, AMP_AND_LOGK_PAIRS[])
+        pool.starmap(run_sim, AMP_AND_LOGK_PAIRS)
     
