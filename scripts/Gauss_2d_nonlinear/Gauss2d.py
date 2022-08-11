@@ -88,12 +88,12 @@ def main(args):
     sx = 5   # size of cell including PML in x-direction
     sy = 5   # size of cell including PML in y-direction
     pml_thickness = 0.25   # thickness of PML layer
-    freq = 12      # vacuum frequency of source (5 to 12 is good)
+    freq = 6      # vacuum frequency of source (5 to 12 is good)
     runtime = 10   # runs simulation for 10 times freq periods
 
     # number of pixels per wavelength in the denser medium (at least 10,
     # 20 to 30 is a good choice)
-    pixel = 10
+    pixel = 60
 
     # source position with respect to the center (point of impact) in Meep
     # units (-2.15 good); if equal -r_w, then source position coincides with
