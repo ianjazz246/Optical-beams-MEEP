@@ -185,6 +185,9 @@ def main(args):
     print("k_vac:", k_vac)
     print("polarisation:", "s" if s_pol else "p")
     print("interface:", interface)
+    print("amp:", amp)
+    print("logk:", args.logk)
+    print("chi3:", chi3)
     print()
 
     # --------------------------------------------------------------------------
