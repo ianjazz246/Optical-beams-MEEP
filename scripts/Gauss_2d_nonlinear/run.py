@@ -17,12 +17,13 @@ Output directory set to "amp={amp} logk={logk}"
 """
 def run_sim(amp: float, logk: float):
     out_dir = f"amp={amp} logk={logk} test"
+    # Write to log file so each MEEP process's output can be clearly read
     with open(out_dir + ".log", "w") as out_file:
         subprocess.run(["python3", SIM_SCRIPT,
                         "-n1", str(SIM_N1), "-n2", str(SIM_N2),
                         "-amp", str(amp), "-logk", str(logk), "-outdir", out_dir],
                         stdout=out_file)
-        print(f"meep process \"{out_dir}\" completed successfully")
+    print(f"MEEP process \"{out_dir}\" completed successfully")
 
 if __name__ == "__main__":
     with multiprocessing.Pool(processes=PROCESS_COUNT) as pool:    
