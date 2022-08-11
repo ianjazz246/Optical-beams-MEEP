@@ -39,8 +39,8 @@ Parenthesis show options for overlaying the dielectric function HDF5FILE_1.
 """
 import argparse
 import math
-import meep as mp
 import optbeam as op
+import meep as mp
 
 from datetime import datetime
 
@@ -304,6 +304,7 @@ if __name__ == '__main__':
                         type=float,
                         default=1.0,
                         help='Source amplitude (default: %(default)s)')
+                        
     parser.add_argument('-logk',
                         type=float,
                         default=-mp.inf,
