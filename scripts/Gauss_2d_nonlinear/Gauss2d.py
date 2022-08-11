@@ -197,6 +197,8 @@ def main(args):
     eps_averaging = True                  # default: True
     filename_prefix = None
 
+    out_dir = args.outdir or interface    # Output directory from arguments or interface if not specified
+
     # specify optical beam
     beam = op.Gauss2d(x=shift, params=params)
 
@@ -221,7 +223,7 @@ def main(args):
                         filename_prefix=filename_prefix
                         )
 
-    sim.use_output_directory(interface)  # put output files in a separate folder
+    sim.use_output_directory(out_dir)  # put output files in a separate folder
 
     def eSquared(r, ex, ey, ez):
         """Calculate |E|^2.
@@ -312,6 +314,11 @@ if __name__ == '__main__':
                         type=float,
                         default=-mp.inf,
                         help='Log of Kerr nonlinearlity (default: %(default)s)')
+
+    parser.add_argument('-outdir',
+                        type=str,
+                        default=None,
+                        help='Name of output directory (default: name of interface)')
 
     args = parser.parse_args()
     main(args)
