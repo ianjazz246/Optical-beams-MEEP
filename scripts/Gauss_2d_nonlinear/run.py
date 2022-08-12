@@ -11,11 +11,13 @@ PROCESS_COUNT = None
 SIM_SCRIPT = "Gauss2d.py"
 SIM_N1 = 1.0
 SIM_N2 = 1.54
-"""
-Run simulation with specified amp and logk values.
-Output directory set to "amp={amp} logk={logk}"
-"""
+
 def run_sim(amp: float, logk: float):
+    """
+    Run simulation with specified amp and logk values.
+    Output directory set to "amp={amp} logk={logk}".
+    Writes stdout to file
+    """
     out_dir = f"amp={amp} logk={logk} test"
     # Write to log file so each MEEP process's output can be clearly read
     with open(out_dir + ".log", "w") as out_file:

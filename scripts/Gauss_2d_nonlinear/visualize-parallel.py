@@ -6,29 +6,29 @@ import re
 
 OUTPUT_H5_FILENAME = "Gauss2d-ez-000011088.h5"
 
-"""
-Replace last occurance of old in string s with new
-"""
 def rreplace(s: str, old: str, new: str, occurrence: int) -> str:
+    """
+    Replace last occurance of old in string s with new
+    """
     li = s.rsplit(old, maxsplit=occurrence)
     return new.join(li)
 
-"""
-Runs ../make-visualization.sh script to turn h5 to png.
-mainDataFile must be an absolute path
-Also renames output png to the name of the directory it's in
-"""
 def visualize_gauss(mainDataFile: str):
+    """
+    Runs ../make-visualization.sh script to turn h5 to png.
+    mainDataFile must be an absolute path
+    Also renames output png to the name of the directory it's in
+    """
     subprocess.run(["../make-visualization.sh", mainDataFile])
     output_png_path = rreplace(mainDataFile, ".h5", ".png", 1)
     containing_dir_name = os.path.basename(os.path.dirname(mainDataFile))
     os.rename(output_png_path, os.path.dirname(output_png_path) + "/" + containing_dir_name + ".png")
 
-"""
-Get iterator containg directory names that match pattern "amp=* logk=*"
-Only directories in current directory, names relative to current directory
-"""
 def get_dirs_to_visualize() -> filter:
+    """
+    Get iterator containg directory names that match pattern "amp=* logk=*"
+    Only directories in current directory, names relative to current directory
+    """
     regex_pattern = "^amp=[0-9\.]+ logk=[+-]?[0-9\.]+ detailed$"
     regex = re.compile(regex_pattern)
     dirs = os.listdir(".")
