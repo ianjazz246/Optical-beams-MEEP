@@ -126,7 +126,7 @@ def main(args):
 
     cell = mp.Vector3(sx, sy, sz)  # geometry-lattice
     default_material = mp.Medium(index=n1)
-    geometry = [mp.Block(mp.Vector3(mp.inf, sx*math.sqrt(2), mp.inf),
+    geometry: list[mp.GeometricObject] = [mp.Block(mp.Vector3(mp.inf, sx*math.sqrt(2), mp.inf),
                          center=mp.Vector3(+sx/2 + Delta_x(alpha(chi_rad)),
                                            -sy/2),
                          e1=mp.Vector3(1/math.tan(alpha(chi_rad)), 1, 0),
@@ -169,9 +169,9 @@ def main(args):
 
     sources = [mp.Source(src=mp.ContinuousSource(frequency=freq, width=0.5),
                          component=mp.Ez if s_pol else mp.Ey,
-                         size=mp.Vector3(0, 9, 0),
+                         size=mp.Vector3(0, 9, 9),
                          center=mp.Vector3(source_shift, 0, 0),
-                         amp_func=amp*beam.profile
+                         amp_func=lambda r: amp * beam.profile(r)
                          )
                ]
 
